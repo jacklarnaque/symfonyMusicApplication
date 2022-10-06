@@ -14,36 +14,33 @@ $package = new Package(new EmptyVersionStrategy());
 class LuckyController extends AbstractController
 
 {
-    #[Route('/')]
-    public function homePage(): Response
+    #[Route('/', name:'app_homepage')]
+    public function homepage(): Response
     {
         $tracks = [
-            'bopuahah : ksdfsqqsqjds',
-            'bopsdfh : kdfsjds',
-            'bosdfsdpuahah : ksjdsqdvvs',
-            'bohah : ksjdsvshjj455',
-        ]; 
-
-
-        return $this->render('homepage.html.twig',  [
-            'title' => 'pB and James',
-            'tracks' => $tracks
+            ['song' => 'Gangsta\'s Paradise', 'artist' => 'Coolio'],
+            ['song' => 'Waterfalls', 'artist' => 'TLC'],
+            ['song' => 'Creep', 'artist' => 'Radiohead'],
+            ['song' => 'Kiss from a Rose', 'artist' => 'Seal'],
+            ['song' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
+            ['song' => 'Fantasy', 'artist' => 'Mariah Carey'],
+        ];
+        return $this->render('homepage.html.twig', [
+            'title' => 'PB & Jams',
+            'tracks' => $tracks,
         ]);
     }
 
-    #[Route('/browse/{slug}')]
+    #[Route('/browse/{slug}', name: 'browse_mixes')]
 // slug will be use as argument in the url, it will be display into the response
     public function browse(string $slug = null): Response
     
     {
-        if ($slug) {
-            $title = u(str_replace('-',' ',$slug))->title(true);
-        } else {
-            $title = 'All Gender';
-        }
-        
+        $genre = $slug ? u(str_replace('-',' ',$slug))->title(true) : null;
         
 
-            return new Response('Gender: '.$title);
-    }
+        return $this->render('browse.html.twig', [
+            'genre' => $genre,
+         ]);
+     }
 }
