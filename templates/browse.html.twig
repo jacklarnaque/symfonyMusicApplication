@@ -12,10 +12,14 @@
             } )}}">Pop</a>
         </li>
         <li class="d-inline">
-            <a class="btn btn-primary btn-sm" href="#">Rock</a>
+            <a class="btn btn-primary btn-sm" href="{{ path('browse_mixes', {
+                slug: 'rock'
+            })}}">Rock</a>
         </li>
         <li class="d-inline">
-            <a class="btn btn-primary btn-sm" href="#">Heavy Metal</a>
+            <a class="btn btn-primary btn-sm" href="{{ path('browse_mixes', {
+                slug: 'Heavy Metal'
+            })}}">Heavy Metal</a>
         </li>
     </ul>
 

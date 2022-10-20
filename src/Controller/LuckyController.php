@@ -44,3 +44,4 @@ class LuckyController extends AbstractController
          ]);
      }
 }
+
